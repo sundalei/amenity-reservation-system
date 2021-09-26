@@ -20,7 +20,6 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -38,6 +37,15 @@ public class User {
             generator = "primary_sequence"
     )
     private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String fullName;
+
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column
+    private String passwordHash;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Reservation> reservations = new HashSet<>();
@@ -57,6 +65,12 @@ public class User {
     @PreUpdate
     public void preUpdate() {
         lastUpdated = OffsetDateTime.now();
+    }
+
+    public User(String fullName, String username, String passwordHash) {
+        this.fullName = fullName;
+        this.username = username;
+        this.passwordHash = passwordHash;
     }
 
 }
