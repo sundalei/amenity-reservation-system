@@ -10,8 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -28,8 +26,7 @@ public class AmenityReservationSystemApplication {
     @Bean
     public CommandLineRunner loadData(UserRepository userRepository, ReservationRepository reservationRepository) {
         return args -> {
-            User user = userRepository.save(new User());
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            User user = userRepository.save(new User("Yigit Kemal Erinc", "yigiterinc", "12345"));
             Date date = new Date();
             LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             Reservation reservation = Reservation.builder()
