@@ -2,6 +2,8 @@ package com.amenity_reservation_system.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,4 +34,16 @@ public class Capacity {
         generator = "primary_sequence"
     )
     private Long id;
+
+    @Column(nullable = false, unique = true)
+    @Enumerated(EnumType.STRING)
+    private AmenityType amenityType;
+
+    @Column(nullable = false)
+    private int capacity;
+
+    public Capacity(AmenityType amenityType, int capacity) {
+        this.amenityType = amenityType;
+        this.capacity = capacity;
+    }
 }
