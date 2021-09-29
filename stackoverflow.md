@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/37919012/browser-is-redirected-to-service-worker-js
